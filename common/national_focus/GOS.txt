@@ -176,4 +176,868 @@ focus_tree = {
 		x = 12
 		y = 3
 	}
+  ########幻想乡地区联盟通用国策区
+	focus = {
+		id = THP_GOS_Great_Barrier_Alliance #国策代码ID
+		icon = GFX_ #图片
+		cost = 8 #国策时间*7 #前置国策
+		x = 5 #国策x轴
+		y = 10 #国策y轴
+
+		prerequisite = { focus = GOS_DEM_treaty_of_stockholm } #前置国策
+		bypass = {
+			has_country_flag = THP_Alliance #触发FLAG
+		}
+
+		available = { #可用条件，待修改，待设定
+			custom_trigger_tooltip = {
+				tooltip = THP_ttmis_reaerch
+				NOT = {
+					DEN = { #各国家
+						focus_progress = {
+							focus = DEN_DEM_GOSdic_council
+							progress > 0
+						}
+					}
+					SWE = {
+						focus_progress = {
+							focus = SWE_DEM_GOSdic_council
+							progress > 0
+						}
+					}
+				}
+			}
+			THP_is_valid_puppet = yes #跳过其他国家该国策
+			SWE = {
+				has_completed_focus = SWE_DEM_treaty_of_stockholm
+			}
+			DEN = {
+				has_completed_focus = DEN_DEM_treaty_of_stockholm
+			}
+			NOT = {
+				has_country_flag = sca_no_GOSdic_council
+			}
+		}
+
+		ai_will_do = { factor = 150 } #ai去做的意愿
+
+		completion_reward = { #完成后触发事件
+			log = "[GetDateText]: [Root.GetName]: Focus THP_GOS_Great_Barrier_Alliance"
+			country_event = GOS_formation.1 #触发事件
+		}
+	}
+
+	focus = {
+		id = THP_GOS_defence_alliance
+		icon = GFX_
+		cost = 8
+		x = 4
+		y = 11
+
+		prerequisite = { focus = THP_GOS_Great_Barrier_Alliance }
+		bypass = {
+			has_country_flag = THP_defence_alliance_signing
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = THP_ttmis_reaerch
+				NOT = {
+					DEN = {
+						focus_progress = {
+							focus = DEN_DEM_defense_union
+							progress > 0
+						}
+					}
+					SWE = {
+						focus_progress = {
+							focus = SWE_DEM_defense_union
+							progress > 0
+						}
+					}
+				}
+			}
+			SWE = {
+				has_country_flag = THP_Alliance
+				THP_is_valid_puppet = yes
+				is_in_faction = no
+			}
+			GOS = {
+				OR = {
+					AND = {
+						has_country_flag = THP_Alliance
+						THP_is_valid_puppet = yes
+						is_in_faction = no
+					}
+					AND = {
+						NOT = { country_exists = GOS }
+						110 = { is_owned_by = SWE }
+					}
+				}
+			}
+			DEN = {
+				has_country_flag = THP_Alliance
+				THP_is_valid_puppet = yes
+				is_in_faction = no
+			}
+			NOT = {
+				has_country_flag = sca_no_defense_union
+			}
+		}
+
+		ai_will_do = { factor = 150 }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus THP_GOS_defence_alliance"
+			SWE = {
+				country_event = GOS_formation.3
+			}
+		}
+	}
+
+	focus = {
+		id = THP_GOS_material
+		icon = GFX_
+		cost = 8
+		x = 3
+		y = 12
+
+		prerequisite = { focus = THP_GOS_defence_alliance }
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = THP_ttmis_reaerch
+				NOT = {
+					DEN = {
+						focus_progress = {
+							focus = DEN_DEM_material_cooperation
+							progress > 0
+						}
+					}
+					SWE = {
+						focus_progress = {
+							focus = SWE_DEM_material_cooperation
+							progress > 0
+						}
+					}
+				}
+			}
+			SWE = {
+				has_country_flag = THP_defence_alliance_signing
+				THP_is_valid_puppet = yes
+			}
+			GOS = {
+				OR = {
+					AND = {
+						has_country_flag = THP_defence_alliance_signing
+						THP_is_valid_puppet = yes
+					}
+					AND = {
+						NOT = { country_exists = GOS }
+						110 = { is_owned_by = SWE }
+					}
+				}
+			}
+			DEN = {
+				has_country_flag = THP_defence_alliance_signing
+				THP_is_valid_puppet = yes
+			}
+		}
+
+		ai_will_do = { factor = 150 }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus THP_GOS_material"
+			add_ideas = THP_common-mil_purchases
+			DEN = {
+				if = {
+					limit = {
+						THP_is_valid_puppet = yes
+						has_country_flag = THP_defence_alliance_signing
+						NOT = { has_completed_focus = DEN_DEM_material_cooperation }
+					}
+					complete_national_focus = DEN_DEM_material_cooperation
+				}
+			}
+			SWE = {
+				if = {
+					limit = {
+						THP_is_valid_puppet = yes
+						has_country_flag = THP_defence_alliance_signing
+						NOT = { has_completed_focus = SWE_DEM_material_cooperation }
+					}
+					complete_national_focus = SWE_DEM_material_cooperation
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = THP_GOS_military
+		icon = GFX_
+		cost = 8
+		x = 2
+		y = 13
+
+		prerequisite = { focus = THP_GOS_material }
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = THP_ttmis_reaerch
+				NOT = {
+					DEN = {
+						focus_progress = {
+							focus = DEN_DEM_military_volunteers
+							progress > 0
+						}
+					}
+					SWE = {
+						focus_progress = {
+							focus = SWE_DEM_military_volunteers
+							progress > 0
+						}
+					}
+				}
+			}
+			THP_is_valid_puppet = yes
+		}
+
+		ai_will_do = { factor = 150 }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus THP_GOS_military"
+			custom_effect_tooltip = GOS_new_generals_tooltip
+			hidden_effect = {
+				DEN = { DEN_erik_leschly = { set_nationality = GOS } }
+				SWE = { SWE_ivar_holmquist = { set_nationality = GOS } }
+			}
+			DEN = {
+				if = {
+					limit = {
+						THP_is_valid_puppet = yes
+						has_country_flag = THP_defence_alliance_signing
+						NOT = { has_completed_focus = DEN_DEM_military_volunteers }
+					}
+					complete_national_focus = DEN_DEM_military_volunteers
+				}
+			}
+			SWE = {
+				if = {
+					limit = {
+						THP_is_valid_puppet = yes
+						has_country_flag = THP_defence_alliance_signing
+						NOT = { has_completed_focus = SWE_DEM_military_volunteers }
+					}
+					complete_national_focus = SWE_DEM_military_volunteers
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = THP_GOS_Census
+		icon = GFX_
+		cost = 8
+		x = 5
+		y = 12
+
+		prerequisite = { focus = THP_GOS_investments }
+		bypass = {
+			has_country_flag = THP_Census_accessed
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = THP_ttmis_reaerch
+				NOT = {
+					DEN = {
+						focus_progress = {
+							focus = DEN_DEM_passport_union
+							progress > 0
+						}
+					}
+					SWE = {
+						focus_progress = {
+							focus = SWE_DEM_passport_union
+							progress > 0
+						}
+					}
+				}
+			}
+			THP_is_valid_puppet = yes
+			NOT = {
+				has_country_flag = sca_no_passport_convention
+			}
+		}
+
+		ai_will_do = { factor = 150 }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus THP_GOS_Census"
+			country_event = GOS_formation.5
+		}
+	}
+
+	focus = {
+		id = GOS_DEM_joint_sessions
+		icon = GFX_
+		cost = 8
+		x = 4
+		y = 13
+
+		prerequisite = { focus = THP_GOS_Census }
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = THP_ttmis_reaerch
+				NOT = {
+					DEN = {
+						focus_progress = {
+							focus = DEN_DEM_joint_sessions
+							progress > 0
+						}
+					}
+					SWE = {
+						focus_progress = {
+							focus = SWE_DEM_joint_sessions
+							progress > 0
+						}
+					}
+				}
+			}
+			SWE = {
+				has_country_flag = THP_Census_accessed
+				THP_is_valid_puppet = yes
+			}
+			GOS = {
+				OR = {
+					AND = {
+						has_country_flag = THP_Census_accessed
+						THP_is_valid_puppet = yes
+					}
+					AND = {
+						NOT = { country_exists = GOS }
+						110 = { is_owned_by = SWE }
+					}
+				}
+			}
+			DEN = {
+				has_country_flag = THP_Census_accessed
+				THP_is_valid_puppet = yes
+			}
+		}
+
+		ai_will_do = { factor = 150 }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GOS_DEM_joint_sessions"
+			add_political_power = 100
+			DEN = {
+				if = {
+					limit = {
+						THP_is_valid_puppet = yes
+						has_country_flag = THP_Census_accessed
+						NOT = { has_completed_focus = DEN_DEM_joint_sessions }
+					}
+					complete_national_focus = DEN_DEM_joint_sessions
+				}
+			}
+			SWE = {
+				if = {
+					limit = {
+						THP_is_valid_puppet = yes
+						has_country_flag = THP_Census_accessed
+						NOT = { has_completed_focus = SWE_DEM_joint_sessions }
+					}
+					complete_national_focus = SWE_DEM_joint_sessions
+				}
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+	}
+
+	focus = {
+		id = THP_GOS_investments
+		icon = GFX_
+		cost = 8
+		x = 7
+		y = 11
+
+		prerequisite = { focus = THP_GOS_Great_Barrier_Alliance }
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = THP_ttmis_reaerch
+				NOT = {
+					DEN = {
+						focus_progress = {
+							focus = DEN_DEM_investments
+							progress > 0
+						}
+					}
+					SWE = {
+						focus_progress = {
+							focus = SWE_DEM_investments
+							progress > 0
+						}
+					}
+				}
+			}
+			SWE = {
+				has_country_flag = THP_Alliance
+				THP_is_valid_puppet = yes
+			}
+			GOS = {
+				OR = {
+					AND = {
+						has_country_flag = THP_Alliance
+						THP_is_valid_puppet = yes
+					}
+					AND = {
+						NOT = { country_exists = GOS }
+						110 = { is_owned_by = SWE }
+					}
+				}
+			}
+			DEN = {
+				has_country_flag = THP_Alliance
+				THP_is_valid_puppet = yes
+			}
+		}
+
+		ai_will_do = { factor = 150 }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus THP_GOS_investments"
+			SWE = {
+				add_one_random_civilian_factory = yes
+				if = {
+					limit = {
+						THP_is_valid_puppet = yes
+						has_country_flag = THP_Alliance
+						NOT = { has_completed_focus = DEN_DEM_investments }
+					}
+					complete_national_focus = DEN_DEM_investments
+				}
+			}
+			DEN = {
+				add_one_random_civilian_factory = yes
+				if = {
+					limit = {
+						THP_is_valid_puppet = yes
+						has_country_flag = THP_Alliance
+						NOT = { has_completed_focus = SWE_DEM_investments }
+					}
+					complete_national_focus = SWE_DEM_investments
+				}
+			}
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+	}
+
+	focus = {
+		id = THP_GOS_monetary_union
+		icon = GFX_
+		cost = 8
+		x = 7
+		y = 12
+
+		prerequisite = { focus = THP_GOS_investments }
+		bypass = {
+			has_country_flag = THP_monetary_union_accepted
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = THP_ttmis_reaerch
+				NOT = {
+					DEN = {
+						focus_progress = {
+							focus = DEN_DEM_monetary_union
+							progress > 0
+						}
+					}
+					SWE = {
+						focus_progress = {
+							focus = SWE_DEM_monetary_union
+							progress > 0
+						}
+					}
+				}
+			}
+			THP_is_valid_puppet = yes
+			NOT = {
+				has_country_flag = THP_no_monetary_union
+			}
+		}
+
+		ai_will_do = { factor = 150 }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GOS_DEM_monetary_union"
+			country_event = GOS_formation.7
+		}
+	}
+
+	focus = {
+		id = THP_GOS_found
+		icon = GFX_
+		cost = 8
+		x = 6
+		y = 13
+
+		prerequisite = { focus = THP_GOS_monetary_union }
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = THP_ttmis_reaerch
+				NOT = {
+					DEN = {
+						focus_progress = {
+							focus = DEN_DEM_found_sas
+							progress > 0
+						}
+					}
+					SWE = {
+						focus_progress = {
+							focus = SWE_DEM_found_sas
+							progress > 0
+						}
+					}
+				}
+			}
+			SWE = {
+				has_country_flag = THP_monetary_union_accepted
+				THP_is_valid_puppet = yes
+			}
+			GOS = {
+				OR = {
+					AND = {
+						has_country_flag = THP_monetary_union_accepted
+						THP_is_valid_puppet = yes
+					}
+					AND = {
+						NOT = { country_exists = GOS }
+						110 = { is_owned_by = SWE }
+					}
+				}
+			}
+			DEN = {
+				has_country_flag = THP_monetary_union_accepted
+				THP_is_valid_puppet = yes
+			}
+		}
+
+		ai_will_do = { factor = 150 }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus THP_GOS_found"
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = GOS_sas_company
+			custom_effect_tooltip = tooltip_white_line
+			DEN = {
+				if = {
+					limit = {
+						THP_is_valid_puppet = yes
+						has_country_flag = THP_monetary_union_accepted
+						NOT = { has_completed_focus = DEN_DEM_found_sas }
+					}
+					complete_national_focus = DEN_DEM_found_sas
+				}
+			}
+			SWE = {
+				if = {
+					limit = {
+						THP_is_valid_puppet = yes
+						has_country_flag = THP_monetary_union_accepted
+						NOT = { has_completed_focus = SWE_DEM_found_sas }
+					}
+					complete_national_focus = SWE_DEM_found_sas
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = GOS_DEM_custom_union
+		icon = GFX_
+		cost = 8
+		x = 8
+		y = 13
+
+		prerequisite = { focus = GOS_DEM_monetary_union }
+		bypass = {
+			has_country_flag = THP_single_market_accepted
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = THP_ttmis_reaerch
+				NOT = {
+					DEN = {
+						focus_progress = {
+							focus = DEN_DEM_custom_union
+							progress > 0
+						}
+					}
+					SWE = {
+						focus_progress = {
+							focus = SWE_DEM_custom_union
+							progress > 0
+						}
+					}
+				}
+			}
+			SWE = {
+				has_country_flag = THP_monetary_union_accepted
+				THP_is_valid_puppet = yes
+			}
+			GOS = {
+				OR = {
+					AND = {
+						has_country_flag = THP_monetary_union_accepted
+						THP_is_valid_puppet = yes
+					}
+					AND = {
+						NOT = { country_exists = GOS }
+						110 = { is_owned_by = SWE }
+					}
+				}
+			}
+			DEN = {
+				has_country_flag = THP_monetary_union_accepted
+				THP_is_valid_puppet = yes
+			}
+			NOT = {
+				has_country_flag = sca_no_customs_union
+			}
+		}
+
+		ai_will_do = { factor = 150 }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GOS_DEM_custom_union"
+			country_event = GOS_formation.9
+		}
+	}
+
+	focus = {
+		id = THP_GOS_Magic_tech_common
+		icon = GFX_
+		cost = 8
+		x = 9
+		y = 12
+
+		prerequisite = { focus = THP_GOS_investments }
+		bypass = {
+			has_country_flag = THP_research_cooperation_accepted
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = THP_ttmis_reaerch
+				NOT = {
+					DEN = {
+						focus_progress = {
+							focus = DEN_DEM_common_tech
+							progress > 0
+						}
+					}
+					SWE = {
+						focus_progress = {
+							focus = SWE_DEM_common_tech
+							progress > 0
+						}
+					}
+				}
+			}
+			THP_is_valid_puppet = yes
+			NOT = {
+				has_country_flag = THP_no_science_cooperation
+			}
+		}
+
+		ai_will_do = { factor = 150 }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus THP_GOS_Magic_tech_common"
+			country_event = GOS_formation.11
+		}
+	}
+
+	focus = {
+		id = THP_GOS_Magic_tech_common_2
+		icon = GFX_
+		cost = 8
+		x =10
+		y = 13
+
+		prerequisite = { focus = THP_GOS_Magic_tech_common }
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = THP_ttmis_reaerch
+				NOT = {
+					DEN = {
+						focus_progress = {
+							focus = DEN_DEM_common_tech_2
+							progress > 0
+						}
+					}
+					SWE = {
+						focus_progress = {
+							focus = SWE_DEM_common_tech_2
+							progress > 0
+						}
+					}
+				}
+			}
+			SWE = {
+				has_country_flag = THP_research_cooperation_accepted
+				THP_is_valid_puppet = yes
+			}
+			GOS = {
+				OR = {
+					AND = {
+						has_country_flag = THP_research_cooperation_accepted
+						THP_is_valid_puppet = yes
+					}
+					AND = {
+						NOT = { country_exists = GOS }
+						110 = { is_owned_by = SWE }
+					}
+				}
+			}
+			DEN = {
+				has_country_flag = THP_research_cooperation_accepted
+				THP_is_valid_puppet = yes
+			}
+		}
+
+		ai_will_do = { factor = 150 }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus THP_GOS_Magic_tech_common_2"
+			if = {
+				limit = { has_tech_sharing_feature = yes }
+				custom_effect_tooltip = THP_tt_tech_magic_sharing_increased
+				hidden_effect = {
+					modify_tech_sharing_bonus = {
+						id = scandinavian_research
+						bonus = 0.05
+					}
+				}
+			}
+			else = {
+				add_tech_bonus = {
+					name = THP_GOS_Magic_tech_common_2
+					bonus = 0.5
+					uses = 2
+					category = industry
+				}
+			}
+			DEN = {
+				if = {
+					limit = {
+						THP_is_valid_puppet = yes
+						has_country_flag = THP_research_cooperation_accepted
+						NOT = { has_completed_focus = DEN_DEM_common_tech_2 }
+					}
+					complete_national_focus = DEN_DEM_common_tech_2
+				}
+			}
+			SWE = {
+				if = {
+					limit = {
+						THP_is_valid_puppet = yes
+						has_country_flag = THP_research_cooperation_accepted
+						NOT = { has_completed_focus = SWE_DEM_common_tech_2 }
+					}
+					complete_national_focus = SWE_DEM_common_tech_2
+				}
+			}
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+	}
+
+	focus = {
+		id = THP_GOS_form_federation
+		icon = GFX_
+		cost = 8
+		x = 6
+		y = 14
+
+		prerequisite = { focus = THP_GOS_military }
+		prerequisite = { focus = GOS_DEM_joint_sessions }
+		prerequisite = { focus = THP_GOS_found }
+		prerequisite = { focus = GOS_DEM_custom_union }
+		prerequisite = { focus = THP_GOS_Magic_tech_common_2 }
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = THP_ttmis_reaerch
+				NOT = {
+					DEN = {
+						focus_progress = {
+							focus = DEN_DEM_form_federation
+							progress > 0
+						}
+					}
+					SWE = {
+						focus_progress = {
+							focus = SWE_DEM_form_federation
+							progress > 0
+						}
+					}
+				}
+			}
+			SWE = {
+				has_country_flag = THP_single_market_accepted
+				THP_is_valid_puppet = yes
+			}
+			GOS = {
+				OR = {
+					AND = {
+						has_country_flag = THP_single_market_accepted
+						THP_is_valid_puppet = yes
+					}
+					AND = {
+						NOT = { country_exists = GOS }
+						110 = { is_owned_by = SWE }
+					}
+				}
+			}
+			DEN = {
+				has_country_flag = THP_single_market_accepted
+				THP_is_valid_puppet = yes
+			}
+			NOT = {
+				has_country_flag = sca_no_federation
+			}
+		}
+
+		ai_will_do = { #AI绝对不会触发该事件
+			factor = 0			#wad
+	 #		modifier = {
+	 #			factor = 10
+	 #			DEN = { is_ai = yes }
+	 #			SWE = { is_ai = yes }
+	 #		}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus THP_GOS_form_federation"
+			custom_effect_tooltip = GOS_SCA_formation_warning
+			set_country_flag = THP_accepted_federation
+			DEN = {
+				country_event = GOS_formation.13
+			}
+			SWE = {
+				country_event = GOS_formation.13
+			}
+			hidden_effect = {
+				country_event = { id = GOS_formation.16 days = 4 }
+			}
+		}
+	}
 }
