@@ -1,0 +1,74 @@
+ideas = {
+	country = {
+		#“大结界破碎的余波
+		THP_great_barrier_broken = {
+			allowed = {
+				always = yes
+			}
+			#picture =  #图片待定
+			allowed_civil_war = {
+				always = no
+			}
+			modifier = {
+				stability_factor = -0.5
+				war_support_factor = -0.3
+				ai_focus_defense_factor = 1
+				production_speed_industrial_complex_factor = -0.2
+                consumer_goods_factor = 2
+			}
+            on_remove = {
+                war_support_weekly = 1
+                stability_weekly = 1
+            }
+            cancel ={
+                date > 3002.1
+            }
+		}
+    
+		#风见幽香参与作战
+		GOS_Kazami_Yuka_on_front = {
+			#picture = 
+			removal_cost = -1
+			allowed_civil_war = {
+				always = yes
+			}
+			on_add = {
+                division_template = {
+                name = "GOS_Kazami_Yuka"
+                is_locked = yes
+                division_cap = 3 
+                division_names_group = GOS_Kazami_Yuka_1
+                priority = 0
+                template_counter = 0
+                regiments = {
+                mountaineers = { x = 0 y = 0 }
+                }
+                support = {
+                military_police = { x = 0 y = 0 }
+                }
+            }
+            }
+            on_add = {
+            special_forces_min = 1#特种部队最低容量
+		    special_forces_cap = 1#特种部队上限乘数
+		    special_forces_attack_factor = 1000 #特种部队攻击
+		    special_forces_defence_factor = 1000 #特种部队防御
+		    special_forces_no_supply_grace = 100 #特种部队补给时间
+            out_of_supply_factor = #补给耗尽惩罚
+            army_org_factor = 100 #部队组织度（百分比）
+		    army_morale_factor = 100 #部队组织度恢复（百分比）
+		    org_loss_when_moving = 20 #陆军移动组织度损失
+            no_supply_grace = 480
+            }
+            cancel = { 
+                NOT = {
+                    has_special_forces = 1
+                }
+			}
+            on_remove = {
+                add_country_flag = GOS_Kazami_Yuka_injury
+            }
+        }
+    }
+}
+    

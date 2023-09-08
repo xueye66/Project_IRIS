@@ -1,0 +1,22 @@
+#风见幽香加入作战
+GOS_Kazami_Yuka = {
+	icon = GFX_decision_category_border_conflicts
+	priority = 99999999999
+	allowed = {
+		tag = GOS
+	}
+	visible = {
+	}
+}
+
+#吸纳妖精流亡者
+GOS_Absorb_the_peri_exiles = {
+	icon = GFX_decision_category_generic_economy
+	picture = GFX_
+	priority = 10
+	allowed = {
+		tag = GOS
+	}
+	visible = {
+	}
+}

@@ -1,0 +1,42 @@
+GOS_Kazami_Yuka = {
+    #风见幽香参与作战
+	GOS_Kazami_Yuka_coming = {
+		icon = GFX_decision_generic_ignite_civil_war
+
+        days_re_enable = 270 #循环启动冷却时间
+
+		available = { #可用条件
+			not = {
+				has_country_flag = GOS_Kazami_Yuka_disappearance
+			}
+			not = {
+				has_country_flag = GOS_Kazami_Yuka_injury
+			}
+		}
+		cost = 100 #花费PP点
+		days_remove = 0 #花费时间
+		complete_effect = {
+            
+        }
+		remove_effect = {
+			add_country_flag = GOS_Kazami_Yuka_on_war
+            add_ideas = GOS_Kazami_Yuka_on_front
+		}
+		ai_will_do = {
+			factor = 30
+			modifier = {
+				any_home_area_neighbor_country = {
+					has_war_with = ROOT
+				}
+				factor = 0
+			}
+			modifier = {
+				FROM = {
+					is_stronger_than_ROOT_and_not_vulnerable = yes
+				}
+				factor = 0
+			}
+		}
+    }
+}
+
