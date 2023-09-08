@@ -97,6 +97,22 @@ defined_text = {
 		}
 		localization_key = [Country_leader_picture12]
 	}
+	text = {
+		trigger = {
+			check_variable = {
+				another_country_leader_group = 20
+			}
+		}
+		localization_key = [Country_leader_picture20]
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				another_country_leader_group = 22
+			}
+		}
+		localization_key = [Country_leader_picture22]
+	}
 	#test
 	text = {
 		trigger = {
@@ -106,9 +122,9 @@ defined_text = {
 	}
 	text = {
 		trigger = {
-			tag = TRB
+			tag = MDS
 		}
-		localization_key = GFX_TRB_Baliu
+		localization_key = GFX_MDS_Baliu
 	}
 	text = {
 		trigger = {
@@ -127,6 +143,12 @@ defined_text = {
 			tag = PCC
 		}
 		localization_key = GFX_PCC_jinbulishihui
+	}
+	text = {
+		trigger = {
+			tag = MAG
+		}
+		localization_key = GFX_MAG_yuweipaizuigaohuiyi
 	}
 	##通用
 	text = {
@@ -233,6 +255,22 @@ defined_text = {
 		}
 		localization_key = [country_leader_name_12]
 	}
+	text = {
+		trigger = {
+			check_variable = {
+				another_country_leader_group = 20
+			}
+		}
+		localization_key = [country_leader_name_20]
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				another_country_leader_group = 22
+			}
+		}
+		localization_key = [country_leader_name_22]
+	}
 	##test
 	text = {
 		trigger = {
@@ -242,7 +280,7 @@ defined_text = {
 	}
 	text = {
 		trigger = {
-			tag = TRB
+			tag = MDS
 		}
 		localization_key = "八六"
 	}
@@ -364,9 +402,9 @@ defined_text = {
 	#test
 	text = {
 		trigger = {
-			tag = TRB
+			tag = MDS
 		}
-		localization_key = TRB_POLITICS_Baliu_DESC
+		localization_key = MDS_POLITICS_Baliu_DESC
 	}
 	text = {
 		trigger = {
@@ -375,6 +413,22 @@ defined_text = {
 			}
 		}
 		localization_key = [Another_country_leader_desc_12]
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				another_country_leader_group = 20
+			}
+		}
+		localization_key = [Another_country_leader_desc_20]
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				another_country_leader_group = 22
+			}
+		}
+		localization_key = [Another_country_leader_desc_22]
 	}
 }
 
@@ -477,12 +531,28 @@ defined_text = {
 		}
 		localization_key = [Another_country_leader_Diplomacy_desc_12]
 	}
+	text = {
+		trigger = {
+			check_variable = {
+				another_country_leader_group = 20
+			}
+		}
+		localization_key = [Another_country_leader_Diplomacy_desc_20]
+	}	
+	text = {
+		trigger = {
+			check_variable = {
+				another_country_leader_group = 22
+			}
+		}
+		localization_key = [Another_country_leader_Diplomacy_desc_22]
+	}
 	#test
 	text = {
 		trigger = {
-			tag = TRB
+			tag = MDS
 		}
-		localization_key = TRB_POLITICS_Baliu_Diplomacy_DESC
+		localization_key = MDS_POLITICS_Baliu_Diplomacy_DESC
 	}
 }
 
@@ -585,11 +655,27 @@ defined_text = {
 		}
 		localization_key = [Another_country_leader_desc_2_12]
 	}
+	text = {
+		trigger = {
+			check_variable = {
+				another_country_leader_group = 20
+			}
+		}
+		localization_key = [Another_country_leader_desc_2_20]
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				another_country_leader_group = 22
+			}
+		}
+		localization_key = [Another_country_leader_desc_2_22]
+	}
 	#test
 	text = {
 		trigger = {
-			tag = TRB
+			tag = MDS
 		}
-		localization_key = TRB_Baliu_DESC
+		localization_key = MDS_Baliu_DESC
 	}
 }
