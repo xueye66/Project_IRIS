@@ -120,13 +120,9 @@ set_popularities = {
 #}
 
 #######开门民族精神
-#add_ideas = ELN_Polina_Bonaparte_idea
-#add_ideas = {
-#	ELN_Aftermath_of_Black_Foaming_Night
-#	ELN_Victor_of_the_world_war
-#	ELN_Quagmire_of_war
-#	ELN_Political_chaos
-#}
+add_ideas = {
+	THP_great_barrier_broken
+}
 
 
 #######待修正
