@@ -21,7 +21,7 @@ GOS_Kazami_Yuka = {
             
         }
 		remove_effect = {
-			add_country_flag = GOS_Kazami_Yuka_on_war
+			set_country_flag = GOS_Kazami_Yuka_on_war
             add_ideas = GOS_Kazami_Yuka_on_front
 				division_template = {
 					name = "GOS_Kazami_Yuka"

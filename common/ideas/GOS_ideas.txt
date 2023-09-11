@@ -34,22 +34,20 @@ ideas = {
 		        special_forces_attack_factor = 10 #特种部队攻击
 		        special_forces_defence_factor = 10 #特种部队防御
 		        special_forces_no_supply_grace = 10 #特种部队补给时间
-                #out_of_supply_factor = #补给耗尽惩罚
-                army_org_factor = 100 #部队组织度（百分比）
-		        army_morale_factor = 100 #部队组织度恢复（百分比）
+                out_of_supply_factor = 1 #补给耗尽惩罚
+                army_org_factor = 10 #部队组织度（百分比）
+		        army_morale_factor = 10 #部队组织度恢复（百分比）
 		        org_loss_when_moving = 20 #陆军移动组织度损失
                 no_supply_grace = 480
             }
             cancel = { 
                 OR = {
-                    #NOT = {
-                        #has_special_forces = 1
-                    #}
+                    division_has_mountaineers_in_template_<mountaineers>
                     has_country_flag = GOS_Kazami_Yuka_disappearance
                 }
             }
             on_remove = {
-                add_country_flag = GOS_Kazami_Yuka_injury
+                set_country_flag = GOS_Kazami_Yuka_injury
             }
         }
         #风见幽香负伤
